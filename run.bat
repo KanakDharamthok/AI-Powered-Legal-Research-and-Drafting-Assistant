@@ -1,0 +1,6 @@
+@echo off
+echo Starting FastAPI Backend...
+start /b uvicorn main:app --reload --port 8000
+
+echo Starting Streamlit Frontend...
+streamlit run app.py --server.port 8501
