@@ -5,8 +5,6 @@ from io import BytesIO
 import pdfplumber
 import hashlib
 
-#OpenAPI key = "REVOKED_KEY"
-
 print("===================================")
 print("NEW MAIN.PY LOADED")
 print("===================================")
