@@ -1,8 +1,8 @@
 <div align="center">
 
-## ⚖️ AI-Powered Legal Research & Drafting Assistant (APLRDA)
+### ⚖️ AI-Powered Legal Research & Drafting Assistant (APLRDA)
 
-### Intelligent Courtroom Analysis • Legal Research • Procedural Loophole Detection • Automated Bail Draft Generation
+## Intelligent Courtroom Analysis • Legal Research • Procedural Loophole Detection • Automated Bail Draft Generation
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
