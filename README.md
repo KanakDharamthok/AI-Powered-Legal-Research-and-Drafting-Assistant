@@ -305,11 +305,11 @@ Example:
 
 Automatically generates:
 
-#### Sessions Court Bail Applications
+#### 1. Sessions Court Bail Applications
 
-#### High Court Bail Applications
+#### 2. High Court Bail Applications
 
-#### Supreme Court SLP Drafts
+#### 3. Supreme Court SLP Drafts
 
 Generated drafts include:
 
