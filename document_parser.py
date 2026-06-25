@@ -3,7 +3,7 @@ import sys
 # Import your existing functional pieces (adjust names based on your exact script names)
 # from ocr_engine import extract_text_from_pdf  
 # from translator import translate_to_english
-from llm_parsers import parse_sparse_notice_text
+from llm_parser import parse_sparse_notice_text
 
 def process_full_pdf_pipeline(file_bytes, filename: str):
     """

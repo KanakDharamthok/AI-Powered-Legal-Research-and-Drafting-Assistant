@@ -1,43 +1,78 @@
-# llm_parser.py
+"""
+llm_parser.py
+=============
+Parses sparse notice board text using local Ollama (gemma2).
+"""
+
+import httpx
 import json
+from pydantic import BaseModel
 from typing import Optional, List
-from pydantic import BaseModel, Field
-import openai
+
+OLLAMA_API_URL = "http://localhost:11434/api/generate"
+MODEL_NAME = "gemma2"
+
 
 class NoticeBoardSchema(BaseModel):
-    case_number: Optional[str] = Field(None, description="Extracted Court Case/Bail Application Number")
-    parties: Optional[str] = Field(None, description="Litigating Parties (e.g., State vs. Unknown)")
-    court_hall: Optional[str] = Field(None, description="Court room or hall identifier")
-    legal_stage: Optional[str] = Field(None, description="Current legal stage, e.g., Framing of Charges, Bail Arguments")
-    inferred_warnings: List[str] = Field(default=[], description="Downstream context gaps flagged for Module 4")
+    case_number: Optional[str] = None
+    parties: Optional[str] = None
+    court_hall: Optional[str] = None
+    legal_stage: Optional[str] = None
+    inferred_warnings: List[str] = []
 
-def parse_sparse_notice_text(snippet: str, api_key: str) -> NoticeBoardSchema:
-    """
-    Uses an LLM to transform a messy, fragmented physical notice board string 
-    into a strictly validated database schema.
-    """
-    client = openai.OpenAI(api_key=api_key)
-    
+
+async def parse_sparse_notice_text_async(snippet: str) -> NoticeBoardSchema:
     prompt = f"""
-    You are an expert Indian court data assistant. Extract key metadata from this notice board scrap text.
-    If a specific variable is completely missing or cannot be inferred, return null for it.
-    If 'bail' is mentioned in the text, add an item to inferred_warnings: 'Arrest confirmed. Request arrest date verification.'
-    
-    Notice Board Scrap: "{snippet}"
-    """
-    
+You are a legal clerk assistant. Extract structured information from the following
+Indian court notice board fragment and respond ONLY with a valid JSON object.
+No explanation, no markdown, no extra text — just raw JSON.
+
+Notice Board Text:
+\"\"\"{snippet}\"\"\"
+
+Respond with exactly this JSON structure:
+{{
+  "case_number": "extracted case number or null",
+  "parties": "applicant vs respondent or null",
+  "court_hall": "court hall or room number or null",
+  "legal_stage": "e.g. Bail Hearing, Framing of Charges, Arguments, Judgment or null",
+  "inferred_warnings": ["any procedural flags or observations as list of strings"]
+}}
+"""
     try:
-        response = client.beta.chat.completions.parse(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "Extract structural court metadata from physical court scraps."},
-                {"role": "user", "content": prompt}
-            ],
-            response_format=NoticeBoardSchema,
+        async with httpx.AsyncClient(timeout=60.0) as client:
+            response = await client.post(
+                OLLAMA_API_URL,
+                json={
+                    "model": MODEL_NAME,
+                    "prompt": prompt,
+                    "stream": False,
+                    "options": {"temperature": 0.1}
+                }
+            )
+            raw = response.json().get("response", "").strip()
+
+            if raw.startswith("```"):
+                raw = raw.split("```")[1]
+                if raw.startswith("json"):
+                    raw = raw[4:]
+            raw = raw.strip()
+
+            parsed = json.loads(raw)
+            return NoticeBoardSchema(**parsed)
+
+    except json.JSONDecodeError:
+        return NoticeBoardSchema(
+            inferred_warnings=["Model returned non-JSON response. Try again."]
         )
-        return response.choices[0].message.parsed
     except Exception as e:
         return NoticeBoardSchema(
-            case_number="Error",
-            inferred_warnings=[f"Parsing exception layer encountered: {str(e)}"]
+            inferred_warnings=[f"Parsing exception: {str(e)}"]
         )
+
+
+# Kept for import compatibility — do not use inside FastAPI endpoints
+def parse_sparse_notice_text(snippet: str, api_key: str = "") -> NoticeBoardSchema:
+    return NoticeBoardSchema(
+        inferred_warnings=["Use parse_sparse_notice_text_async inside FastAPI endpoints."]
+    )
