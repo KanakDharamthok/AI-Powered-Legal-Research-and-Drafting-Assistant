@@ -32,33 +32,33 @@ Unlike traditional legal search tools that merely retrieve information, APLRDA a
 
 ---
 
-# 🛑 Problem Statement
+## 🛑 Problem Statement
 
 The Indian legal ecosystem faces several operational challenges:
 
-### 📚 Manual Legal Research
+#### 1. Manual Legal Research
 
 Advocates and interns spend substantial time searching statutes, precedents, and procedural provisions before drafting applications.
 
-### 🔍 Hidden Procedural Violations
+#### 2. Hidden Procedural Violations
 
 Critical procedural defects often remain unnoticed, weakening legal strategies.
 
-### 🎙️ Courtroom Documentation Difficulties
+#### 3. Courtroom Documentation Difficulties
 
 Court proceedings frequently involve multilingual conversations, ambient noise, and fragmented records.
 
-### 📝 Time-Consuming Draft Preparation
+#### 4. Time-Consuming Draft Preparation
 
 Drafting bail applications requires extensive legal research, precedent analysis, and procedural verification.
 
-### 🔄 Fragmented Workflow
+#### 5. Fragmented Workflow
 
 Most legal solutions solve isolated problems rather than supporting the entire litigation workflow.
 
 ---
 
-# 💡 Solution
+## 💡 Solution
 
 APLRDA provides a unified AI-driven legal workflow that automates:
 
@@ -72,7 +72,7 @@ The system transforms unstructured legal data into structured legal intelligence
 
 ---
 
-# 🎯 End-to-End Workflow
+## 🎯 End-to-End Workflow
 
 ```text
 Role Verification
@@ -102,28 +102,28 @@ Download & Archive
 
 ---
 
-# ✨ Core Features
+## ✨ Core Features
 
 ---
 
-## 🔐 Role-Based Access Control
+### 🔐 Role-Based Access Control
 
 The platform implements access-based visibility and governance controls.
 
-### Senior Advocate
+#### Senior Advocate
 
 - Complete system access
 - View all extracted facts
 - Access loophole reports
 - Generate final drafts
 
-### Junior Advocate
+#### Junior Advocate
 
 - Legal research access
 - Draft review capabilities
 - Procedural analysis support
 
-### Intern
+#### Intern
 
 - Restricted visibility
 - Sensitive information masking
@@ -131,9 +131,9 @@ The platform implements access-based visibility and governance controls.
 
 ---
 
-## 📄 Legal Document Intelligence
+### 📄 Legal Document Intelligence
 
-### Official Document Processing
+#### Official Document Processing
 
 Supports:
 
@@ -151,7 +151,7 @@ Features:
 
 ---
 
-### Notice Board Fragment Parsing
+#### Notice Board Fragment Parsing
 
 The system can process fragmented court notice board information and extract:
 
@@ -174,13 +174,13 @@ Converted into structured JSON automatically.
 
 ---
 
-## 🎙️ Courtroom Audio Intelligence
+### 🎙️ Courtroom Audio Intelligence
 
-### Live Courtroom Recording
+#### Live Courtroom Recording
 
 Supports real-time courtroom audio capture.
 
-### Speech Recognition
+#### Speech Recognition
 
 Powered by:
 
@@ -190,7 +190,7 @@ Powered by:
 - Marathi Support
 - English Support
 
-### Noise Suppression
+#### Noise Suppression
 
 Powered by Silero Voice Activity Detection (VAD):
 
@@ -199,7 +199,7 @@ Powered by Silero Voice Activity Detection (VAD):
 - Eliminates microphone testing chatter
 - Retains legal arguments
 
-### Transcript Normalization
+#### Transcript Normalization
 
 Gemma2 converts noisy multilingual transcripts into:
 
@@ -209,25 +209,25 @@ Gemma2 converts noisy multilingual transcripts into:
 
 ---
 
-## 📚 Retrieval-Augmented Legal Research (RAG)
+### 📚 Retrieval-Augmented Legal Research (RAG)
 
 APLRDA maintains a local legal knowledge base.
 
-### Knowledge Sources
+#### Knowledge Sources
 
-#### Statutes
+##### Statutes
 
 - Bharatiya Nyaya Sanhita (BNS)
 - Bharatiya Nagarik Suraksha Sanhita (BNSS)
 
-#### Judicial Precedents
+##### Judicial Precedents
 
 - Bail Granted Cases
 - Bail Rejected Cases
 
 ---
 
-### Retrieval Pipeline
+#### Retrieval Pipeline
 
 ```text
 User Facts
@@ -247,7 +247,7 @@ Relevant Judgments
 
 ---
 
-## 🔍 Loophole Detection Engine
+### 🔍 Loophole Detection Engine
 
 One of the core innovations of APLRDA.
 
@@ -261,7 +261,7 @@ Examples:
 - Investigation delays
 - Illegal arrest procedures
 
-### Evidentiary Gaps
+#### Evidentiary Gaps
 
 Examples:
 
@@ -269,7 +269,7 @@ Examples:
 - Weak witness statements
 - Documentary inconsistencies
 
-### Contradictions
+#### Contradictions
 
 Examples:
 
@@ -279,7 +279,7 @@ Examples:
 
 ---
 
-### Generated Output
+#### Generated Output
 
 Each loophole includes:
 
@@ -301,15 +301,15 @@ Example:
 
 ---
 
-## 📝 Automated Bail Draft Generation
+### 📝 Automated Bail Draft Generation
 
 Automatically generates:
 
-### Sessions Court Bail Applications
+#### Sessions Court Bail Applications
 
-### High Court Bail Applications
+#### High Court Bail Applications
 
-### Supreme Court SLP Drafts
+#### Supreme Court SLP Drafts
 
 Generated drafts include:
 
@@ -323,17 +323,17 @@ Generated drafts include:
 
 ---
 
-## 💾 Draft Archival System
+### 💾 Draft Archival System
 
 Generated drafts can be:
 
-### Downloaded
+#### Downloaded
 
 ```text
 Bail_Draft_CASEID.txt
 ```
 
-### Archived
+#### Archived
 
 Stored locally using:
 
@@ -349,7 +349,7 @@ This ensures:
 
 ---
 
-# 🧠 System Architecture
+## 🧠 System Architecture
 
 ```text
                      ┌─────────────────────┐
@@ -400,7 +400,7 @@ Control      Parser         Engine         Engine
 
 ---
 
-# 🛠️ Technology Stack
+## 🛠️ Technology Stack
 
 | Category | Technology |
 |-----------|------------|
@@ -419,7 +419,7 @@ Control      Parser         Engine         Engine
 
 ---
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```text
 APLRDA/
@@ -457,36 +457,36 @@ APLRDA/
 
 ---
 
-# ⚙️ Installation
+## ⚙️ Installation
 
-## Clone Repository
+### Clone Repository
 
 ```bash
 git clone https://github.com/yourusername/APLRDA.git
 cd APLRDA
 ```
 
-## Create Virtual Environment
+### Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-## Activate Environment
+### Activate Environment
 
-### Windows
+#### Windows
 
 ```bash
 venv\Scripts\activate
 ```
 
-### Linux / Mac
+#### Linux / Mac
 
 ```bash
 source venv/bin/activate
 ```
 
-## Install Dependencies
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -494,15 +494,15 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Running the Project
+## ▶️ Running the Project
 
-## Start Backend
+### Start Backend
 
 ```bash
 uvicorn main:app --reload --port 8000
 ```
 
-## Start Frontend
+### Start Frontend
 
 ```bash
 streamlit run app.py
@@ -516,7 +516,7 @@ run.bat
 
 ---
 
-# 🔮 Future Enhancements
+## 🔮 Future Enhancements
 
 - OCR for scanned FIRs
 - Courtroom speaker identification
@@ -529,7 +529,7 @@ run.bat
 
 ---
 
-# 🤝 Contributions
+## 🤝 Contributions
 
 Contributions, feature ideas, pull requests, and bug reports are welcome!
 
@@ -549,11 +549,11 @@ Submit Pull Request
 Review & Merge
 ```
 
-# Fork → Code → Pull Request ✔️
+### Fork → Code → Pull Request ✔️
 
 ---
 
-# 📬 Contact
+## 📬 Contact
 
 👨‍💻 **Developer:** Kanak Dharamthok
 
@@ -565,7 +565,7 @@ Review & Merge
 
 ---
 
-# ⭐ Support
+## ⭐ Support
 
 If you find this project useful:
 
@@ -578,7 +578,7 @@ If you find this project useful:
 
 <div align="center">
 
-## ⚖️ AI-Powered Legal Research & Drafting Assistant (APLRDA)
+### ⚖️ AI-Powered Legal Research & Drafting Assistant (APLRDA)
 
 Transforming Legal Research, Courtroom Intelligence, and Bail Drafting through Artificial Intelligence.
 
