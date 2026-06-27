@@ -10,7 +10,7 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 OLLAMA_API_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "gemma2"
+MODEL_NAME = "gemma2:2b"
 
 
 class NoticeBoardSchema(BaseModel):
@@ -40,7 +40,7 @@ Respond with exactly this JSON structure:
 }}
 """
     try:
-        async with httpx.AsyncClient(timeout=60.0) as client:
+        async with httpx.AsyncClient(timeout=300.0) as client:
             response = await client.post(
                 OLLAMA_API_URL,
                 json={

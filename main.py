@@ -81,7 +81,7 @@ except Exception as e:
 
 # Local LLM Variables for Module 4 Engine
 OLLAMA_API_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "gemma2"
+MODEL_NAME = "gemma2:2b"
 
 print("Loading Whisper model...")
 whisper_model = whisper.load_model("medium")
@@ -380,7 +380,7 @@ You MUST respond with a valid raw JSON array containing objects matching this sc
 ]
 """
 
-    async with httpx.AsyncClient(timeout=60.0) as client:
+    async with httpx.AsyncClient(timeout=300.0) as client:
         try:
             response = await client.post(
                 OLLAMA_API_URL,
